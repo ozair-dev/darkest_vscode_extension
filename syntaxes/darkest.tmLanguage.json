@@ -1,0 +1,41 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Darkest",
+  "patterns": [
+    {
+      "include": "#expression"
+    }
+  ],
+  "repository": {
+    "expression": {
+      "patterns": [
+        {
+          "name": "keyword",
+          "match": "^\\w+:"
+        },
+        {
+          "name": "variable.parameter",
+          "match": "\\.([a-zA-Z_]+)\\b"
+        },
+        {
+          "name": "string.quoted.double",
+          "match": "\"[^\"]*\""
+        },
+        {
+          "name": "constant.numeric",
+          "match": "\\b\\d+(\\.\\d+)?%?\\b"
+        },
+        {
+          "name": "constant.language",
+          "match": "\\b(true|false)\\b"
+        },
+        {
+          "name": "comment.line.double-slash",
+          "begin": "//",
+          "end": "$"
+        }
+      ]
+    }
+  },
+  "scopeName": "source.darkest"
+}
