@@ -1,5 +1,5 @@
 type Schema = {
-  type: "string" | "number" | "boolean" | "list" | "number_list";
+  type: "string" | "number" | "boolean" | "list" | "number_list" | "range";
   description: string;
   allowed_values?: string[] | number[] | boolean[];
   required?: boolean;
@@ -630,6 +630,288 @@ export const GAME_MECHANICS_SCHEMA: {
       description: "Skill name identifier",
     },
     ".dmg": {
+      type: "number",
+      description: "Damage range for monsters or value for heroes",
+    },
+    ".atk": {
+      type: "number",
+      description: "Attack value",
+    },
+    ".move": {
+      type: "string",
+      description: "Movement direction",
+      allowed_values: ["back", "forth"],
+    },
+    ".crit": {
+      type: "number",
+      description: "Critical hit value",
+    },
+    ".level": {
+      type: "number",
+      description: "Skill level value",
+    },
+    ".type": {
+      type: "string",
+      description: "Skill type",
+      allowed_values: ["melee", "ranged", "move", "teleport", ""],
+    },
+    ".starting_cooldown": {
+      type: "number",
+      description: "Starting cooldown value",
+    },
+    ".per_battle_limit": {
+      type: "number",
+      description: "Limit per battle",
+    },
+    ".per_turn_limit": {
+      type: "number",
+      description: "Limit per turn",
+    },
+    ".is_continue_turn": {
+      type: "boolean",
+      description: "Whether the skill continues the turn",
+    },
+    ".launch": {
+      type: "string",
+      description: "Launch ranks",
+    },
+    ".target": {
+      type: "string",
+      description: "Target ranks",
+    },
+    ".self_target_valid": {
+      type: "boolean",
+      description: "Whether self-targeting is valid",
+    },
+    ".extra_targets_chance": {
+      type: "number",
+      description: "Chance for extra targets",
+    },
+    ".extra_targets_count": {
+      type: "number",
+      description: "Count of extra targets",
+    },
+    ".is_crit_valid": {
+      type: "boolean",
+      description: "Whether critical hits are valid",
+    },
+    ".effect": {
+      type: "list",
+      description: "Effect IDs",
+    },
+    ".valid_modes": {
+      type: "list",
+      description: "Valid mode IDs",
+    },
+    ".%s_effects": {
+      type: "list",
+      description: "Effects IDs for a specific mode",
+    },
+    ".ignore_stealth": {
+      type: "boolean",
+      description: "Whether the skill ignores stealth",
+    },
+    ".ignore_guard": {
+      type: "boolean",
+      description: "Whether the skill ignores guard",
+    },
+    ".can_miss": {
+      type: "boolean",
+      description: "Whether the skill can miss",
+    },
+    ".can_be_riposted": {
+      type: "boolean",
+      description: "Whether the skill can be riposted",
+    },
+    ".ignore_protection": {
+      type: "boolean",
+      description: "Whether the skill ignores protection",
+    },
+    ".required_performer_hp_range": {
+      type: "string",
+      description: "Required HP range for the performer",
+    },
+    ".rank_damage_modifiers": {
+      type: "list",
+      description: "Damage modifiers for ranks",
+      allowed_values: ["rank4", "rank3", "rank2", "rank1"],
+    },
+    ".heal": {
+      type: "range",
+      description: "Healing range",
+    },
+    ".can_crit_heal": {
+      type: "boolean",
+      description: "Whether critical healing is possible",
+    },
+    ".generation_guaranteed": {
+      type: "boolean",
+      description: "Whether generation is guaranteed",
+    },
+    ".is_user_selected_targets": {
+      type: "boolean",
+      description: "Whether the user selects targets",
+    },
+    ".is_knowledgeable": {
+      type: "boolean",
+      description: "Whether the skill is knowledgeable",
+    },
+    ".is_monster_rerank_valid_on_attack": {
+      type: "boolean",
+      description: "Whether monster rerank is valid on attack",
+    },
+    ".is_monster_rerank_valid_on_friendly_presentation_end": {
+      type: "boolean",
+      description:
+        "Whether monster rerank is valid on friendly presentation end",
+    },
+    ".is_monster_rerank_valid_on_friendly_post_result": {
+      type: "boolean",
+      description: "Whether monster rerank is valid on friendly post result",
+    },
+    ".is_stall_invalidating": {
+      type: "boolean",
+      description: "Whether the skill invalidates stalling",
+    },
+    ".refresh_after_each_wave": {
+      type: "boolean",
+      description: "Whether the skill refreshes after each wave",
+    },
+    ".damage_heal_base_class_ids": {
+      type: "list",
+      description: "Base class IDs for damage or healing",
+    },
+    ".ignore_deathsdoor": {
+      type: "boolean",
+      description: "Whether the skill ignores death's door",
+    },
+    ".icon": {
+      type: "string",
+      description: "Icon name",
+    },
+    ".anim": {
+      type: "string",
+      description: "Animation name",
+    },
+    ".fx": {
+      type: "string",
+      description: "Effect name",
+    },
+    ".targfx": {
+      type: "string",
+      description: "Target effect name",
+    },
+    ".targheadfx": {
+      type: "string",
+      description: "Target head effect name",
+    },
+    ".targchestfx": {
+      type: "string",
+      description: "Target chest effect name",
+    },
+    ".misstargfx": {
+      type: "string",
+      description: "Missed target effect name",
+    },
+    ".misstargheadfx": {
+      type: "string",
+      description: "Missed target head effect name",
+    },
+    ".misstargchestfx": {
+      type: "string",
+      description: "Missed target chest effect name",
+    },
+    ".area_pos_offset": {
+      type: "range",
+      description: "Area position offset (X, Y)",
+    },
+    ".target_area_pos_offset": {
+      type: "range",
+      description: "Target area position offset (X, Y)",
+    },
+    ".reset_source_stance": {
+      type: "boolean",
+      description: "Whether the source stance is reset",
+    },
+    ".reset_target_stance": {
+      type: "boolean",
+      description: "Whether the target stance is reset",
+    },
+    ".can_display_selection": {
+      type: "boolean",
+      description: "Whether the selection can be displayed",
+    },
+    ".hide_performer_health": {
+      type: "boolean",
+      description: "Whether the performer's health is hidden",
+    },
+    ".condensed_tooltip_effects": {
+      type: "boolean",
+      description: "Whether effects are condensed in the tooltip",
+    },
+    ".condensed_tooltip_stats": {
+      type: "boolean",
+      description: "Whether stats are condensed in the tooltip",
+    },
+    ".condensed_tooltip_type": {
+      type: "boolean",
+      description: "Whether type is condensed in the tooltip",
+    },
+    ".condensed_tooltip_effects_per_line": {
+      type: "number",
+      description: "Number of effects per line in the tooltip",
+    },
+    ".nil": {
+      type: "boolean",
+      description: "Hides skill stats and other information",
+    },
+    ".custom_target_anim": {
+      type: "string",
+      description: "Custom target animation name",
+    },
+    ".custom_idle_anim_name": {
+      type: "string",
+      description: "Custom idle animation name",
+    },
+    ".custom_idle_round_duration": {
+      type: "number",
+      description: "Custom idle round duration",
+    },
+    ".has_crit_vo": {
+      type: "boolean",
+      description: "Whether critical voiceover is present",
+    },
+    ".can_display_skill_name": {
+      type: "boolean",
+      description: "Whether the skill name can be displayed",
+    },
+    ".can_display_performer_selection_after_turn": {
+      type: "boolean",
+      description: "Whether performer selection can be displayed after turn",
+    },
+    ".sw_smendA_effects": {
+      type: "list",
+      description: "Effects IDs for a specific mode",
+    },
+    ".sw_smendB_effects": {
+      type: "list",
+      description: "Effects IDs for a specific mode",
+    },
+    ".sw_sformA_effects": {
+      type: "list",
+      description: "Effects IDs for a specific mode",
+    },
+    ".ignore_riposte": {
+      type: "boolean",
+      description: "Whether the skill ignores riposte",
+    }
+  },
+  combat_move_skill: {
+    ".id": {
+      type: "string",
+      description: "Skill name identifier",
+    },
+    ".dmg": {
       type: "string",
       description: "Damage range for monsters or value for heroes",
     },
@@ -822,11 +1104,11 @@ export const GAME_MECHANICS_SCHEMA: {
       description: "Missed target chest effect name",
     },
     ".area_pos_offset": {
-      type: "string",
+      type: "range",
       description: "Area position offset (X, Y)",
     },
     ".target_area_pos_offset": {
-      type: "string",
+      type: "range",
       description: "Target area position offset (X, Y)",
     },
     ".reset_source_stance": {
@@ -1034,4 +1316,192 @@ export const GAME_MECHANICS_SCHEMA: {
         "Amount by which the number of cards in the deck is reduced.",
     },
   },
+  weapon:{
+    ".name": {
+      type: "string",
+      description: "The unique identifier of the given weapon level."
+    },
+    ".atk": {
+      type: "number",
+      description: "The hero's base accuracy for the given weapon level."
+    },
+    ".dmg": {
+      type: "range",
+      description: "The hero's base damage for the given weapon level."
+    },
+    ".crit": {
+      type: "number",
+      description: "The hero's base CRIT chance for the given weapon level."
+    },
+    ".spd": {
+      type: "number",
+      description: "Part hero's base speed for the given weapon level, gets added together with the speed value of the armour, the armour's is typically 0 at all levels."
+    },
+    ".upgradeRequirementCode": {
+      type: "number",
+      description: "The weapon level required for this level to be unlockable, used in cojunction with the hero's upgrades.json file."
+    },
+    ".icon": {
+      type: "string",
+      description: "The name of the icon's file for the given weapon level."
+    }
+  },
+  armour:{
+    ".name": {
+      type: "string",
+      description: "The unique identifier of the given armour level."
+    },
+    ".def": {
+      type: "number",
+      description:"The hero's base dodge for the given armour level."
+    },
+    ".prot": {
+      type: "number",
+      description:"The hero's base protection for the given armour level."
+    },
+    ".hp": {
+      type: "number",
+      description:"The hero's base max health for the given armour level."
+    },
+    ".spd": {
+      type: "number",
+      description: "Part hero's base speed for the given armour level, gets added together with the speed value of the weapon, the armour's is typically 0 at all levels."
+    },
+    ".upgradeRequirementCode": {
+      type: "number",
+      description: "The armour level required for this level to be unlockable, used in cojunction with the hero's upgrades.json file."
+    },
+    ".icon": {
+      type: "string",
+      description: "The name of the icon's file for the given armour level."
+    }
+  },
+  crit: {
+    ".effects": {
+      type: "list",
+      description: "Effect IDs",
+    },
+  },
+  tag: {
+    ".id": {
+      type: "string",
+      description: "The tag's ID",
+      required: true
+    },
+  },
+  incompatible_party_member: {
+    ".id": {
+      type: "string",
+      description: "The party restriction's ID",
+      required: true
+    },
+    ".hero_tag": {
+      type: "string",
+      description: "The incompatible tag's ID",
+      required: true
+    },
+  },
+  overstressed_modifier: {
+    ".override_trait_type_ids": {
+      type: "list",
+      description: "The IDs of each custom Overstress states the hero will use.",
+      required: true
+    },
+    ".override_trait_type_chances": {
+      type: "number_list",
+      description: "The chances of each of the custom Overstress states the hero will use.",
+      required: true
+    },
+  },
+  activity_modifier: {
+    ".override_valid_activity_ids": {
+      type: "list",
+      description: "The IDs of Hamlet facilities the hero cannot use.",
+      required: true
+    },
+  },
+  quirk_modifier: {
+    ".incompatible_class_ids": {
+      type: "list",
+      description: "The IDs of quirks the hero cannot acquire.",
+      required: true
+    },
+  },
+  extra_curio_loot: {
+    ".code": {
+      type: "string",
+      description: "The loot table's ID",
+    },
+    ".count": {
+      type: "number",
+      description: "The number of pulls from the loot table.",
+    },
+  },
+  deaths_door: {
+    ".buffs": {
+      type: "list",
+      description: "Death's Door IDs",
+    },
+    ".recovery_buffs": {
+      type: "list",
+      description: "Death's Door Recovery buff IDs",
+    },
+    ".recovery_heart_attack_buffs": {
+      type: "list",
+      description: "Heart attack buff IDs",
+    },
+  },
+  controlled: {
+    ".target_rank": {
+      type: "number",
+      description: "The Rank the hero will try to enter when charmed by a monster.",
+      required: true
+    },
+  },
+  id_index: {
+    ".index": {
+      type: "number",
+      description: "The hero's index, it seemingly does nothing, still need to be present however.",
+      required: true
+    },
+  },
+  skill_selection: {
+    ".can_select_combat_skills": {
+      type: "boolean",
+      description: "Whether or not the player can select and deselect the hero's skills on the hero screen.",
+    },
+    ".number_of_selected_combat_skills_max": {
+      type: "number",
+      description: "The number of skills the hero can have selected.",
+    },
+  },
+  commonfx: {
+    ".deathfx": {
+      type: "string",
+      description:"The ID of the FX.",
+      required: true
+    }
+  },
+  act_out_display: {
+    ".attack_friendly_anim": {
+      type: "string",
+      description:"The ID of the animation.",
+      required: true
+    },
+    ".attack_friendly_fx": {
+      type: "string",
+      description:"The ID of the attack's FX.",
+      required: true
+    },
+    ".attack_friendly_targchestfx": {
+      type: "string",
+      description:"The ID of the target chest FX.",
+      required: true
+    },
+    ".attack_friendly_sfx": {
+      type: "string",
+      description:"The ID of the friendly attack's SFX.",
+      required: true
+    }
+  }
 };
