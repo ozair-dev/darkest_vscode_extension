@@ -1,6 +1,7 @@
 import * as vscode from "vscode";
 import { GAME_MECHANICS_SCHEMA } from "./game-mechanics-schema";
 import { throttle } from "./utils/throttle";
+import { addEffect, addEffectParameter } from './effectCreation'; 
 
 export function activate(context: vscode.ExtensionContext) {
   const collection = vscode.languages.createDiagnosticCollection("darkest");
@@ -22,6 +23,218 @@ export function activate(context: vscode.ExtensionContext) {
       if (event.document) {
         throttledUpdateDiagnostics(event.document, collection);
       }
+    })
+  );
+
+  context.subscriptions.push(
+    vscode.commands.registerCommand('darkest.addStun', () => {
+      const editor = vscode.window.activeTextEditor;
+      if (editor) addEffect(editor, 'stun');
+    })
+  );
+  context.subscriptions.push(
+    vscode.commands.registerCommand('darkest.addUnstun', () => {
+      const editor = vscode.window.activeTextEditor;
+      if (editor) addEffect(editor, 'unstun');
+    })
+  );
+  context.subscriptions.push(
+    vscode.commands.registerCommand('darkest.addMark', () => {
+      const editor = vscode.window.activeTextEditor;
+      if (editor) addEffect(editor, 'tag');
+    })
+  );
+  context.subscriptions.push(
+    vscode.commands.registerCommand('darkest.addUnmark', () => {
+      const editor = vscode.window.activeTextEditor;
+      if (editor) addEffect(editor, 'untag');
+    })
+  );
+  context.subscriptions.push(
+    vscode.commands.registerCommand('darkest.addBleed', () => {
+      const editor = vscode.window.activeTextEditor;
+      if (editor) addEffect(editor, 'bleed');
+    })
+  );
+  context.subscriptions.push(
+    vscode.commands.registerCommand('darkest.addBlight', () => {
+      const editor = vscode.window.activeTextEditor;
+      if (editor) addEffect(editor, 'blight');
+    })
+  );
+  context.subscriptions.push(
+    vscode.commands.registerCommand('darkest.addCureBleed', () => {
+      const editor = vscode.window.activeTextEditor;
+      if (editor) addEffect(editor, 'cureBleed');
+    })
+  );
+  context.subscriptions.push(
+    vscode.commands.registerCommand('darkest.addCureBlight', () => {
+      const editor = vscode.window.activeTextEditor;
+      if (editor) addEffect(editor, 'cureBlight');
+    })
+  );
+  context.subscriptions.push(
+    vscode.commands.registerCommand('darkest.addCureDOTS', () => {
+      const editor = vscode.window.activeTextEditor;
+      if (editor) addEffect(editor, 'cureDOTS');
+    })
+  );
+  context.subscriptions.push(
+    vscode.commands.registerCommand('darkest.addHeal', () => {
+      const editor = vscode.window.activeTextEditor;
+      if (editor) addEffect(editor, 'heal');
+    })
+  );
+  context.subscriptions.push(
+    vscode.commands.registerCommand('darkest.addRegen', () => {
+      const editor = vscode.window.activeTextEditor;
+      if (editor) addEffect(editor, 'regen');
+    })
+  );
+  context.subscriptions.push(
+    vscode.commands.registerCommand('darkest.addStress', () => {
+      const editor = vscode.window.activeTextEditor;
+      if (editor) addEffect(editor, 'stress');
+    })
+  );
+  context.subscriptions.push(
+    vscode.commands.registerCommand('darkest.addDestress', () => {
+      const editor = vscode.window.activeTextEditor;
+      if (editor) addEffect(editor, 'destress');
+    })
+  );
+  context.subscriptions.push(
+    vscode.commands.registerCommand('darkest.addHorror', () => {
+      const editor = vscode.window.activeTextEditor;
+      if (editor) addEffect(editor, 'horror');
+    })
+  );
+  context.subscriptions.push(
+    vscode.commands.registerCommand('darkest.addCureHorror', () => {
+      const editor = vscode.window.activeTextEditor;
+      if (editor) addEffect(editor, 'cureHorror');
+    })
+  );
+  context.subscriptions.push(
+    vscode.commands.registerCommand('darkest.addGuard', () => {
+      const editor = vscode.window.activeTextEditor;
+      if (editor) addEffect(editor, 'guard');
+    })
+  );
+  context.subscriptions.push(
+    vscode.commands.registerCommand('darkest.addClearGuard', () => {
+      const editor = vscode.window.activeTextEditor;
+      if (editor) addEffect(editor, 'clearGuard');
+    })
+  );
+  context.subscriptions.push(
+    vscode.commands.registerCommand('darkest.addBuff1', () => {
+      const editor = vscode.window.activeTextEditor;
+      if (editor) addEffect(editor, 'buff1');
+    })
+  );
+  context.subscriptions.push(
+    vscode.commands.registerCommand('darkest.addBuff2', () => {
+      const editor = vscode.window.activeTextEditor;
+      if (editor) addEffect(editor, 'buff2');
+    })
+  );
+  context.subscriptions.push(
+    vscode.commands.registerCommand('darkest.addCureDebuff', () => {
+      const editor = vscode.window.activeTextEditor;
+      if (editor) addEffect(editor, 'cureDebuff');
+    })
+  );
+  context.subscriptions.push(
+    vscode.commands.registerCommand('darkest.addADOT', () => {
+      const editor = vscode.window.activeTextEditor;
+      if (editor) addEffect(editor, 'adot');
+    })
+  );
+  context.subscriptions.push(
+    vscode.commands.registerCommand('darkest.addSetMode', () => {
+      const editor = vscode.window.activeTextEditor;
+      if (editor) addEffect(editor, 'setMode');
+    })
+  );
+  context.subscriptions.push(
+    vscode.commands.registerCommand('darkest.addRiposte', () => {
+      const editor = vscode.window.activeTextEditor;
+      if (editor) addEffect(editor, 'riposte');
+    })
+  );
+  context.subscriptions.push(
+    vscode.commands.registerCommand('darkest.addClearRiposte', () => {
+      const editor = vscode.window.activeTextEditor;
+      if (editor) addEffect(editor, 'clearRiposte');
+    })
+  );
+  context.subscriptions.push(
+    vscode.commands.registerCommand('darkest.addPush', () => {
+      const editor = vscode.window.activeTextEditor;
+      if (editor) addEffect(editor, 'push');
+    })
+  );
+  context.subscriptions.push(
+    vscode.commands.registerCommand('darkest.addPull', () => {
+      const editor = vscode.window.activeTextEditor;
+      if (editor) addEffect(editor, 'pull');
+    })
+  );
+  context.subscriptions.push(
+    vscode.commands.registerCommand('darkest.addShuffleTarget', () => {
+      const editor = vscode.window.activeTextEditor;
+      if (editor) addEffect(editor, 'shuffleTarget');
+    })
+  );
+  context.subscriptions.push(
+    vscode.commands.registerCommand('darkest.addShuffleParty', () => {
+      const editor = vscode.window.activeTextEditor;
+      if (editor) addEffect(editor, 'shuffleParty');
+    })
+  );
+  context.subscriptions.push(
+    vscode.commands.registerCommand('darkest.addShuffleDOT', () => {
+      const editor = vscode.window.activeTextEditor;
+      if (editor) addEffect(editor, 'shuffleDOT');
+    })
+  );
+  
+  context.subscriptions.push(
+    vscode.commands.registerCommand('darkest.addInstant', () => {
+      const editor = vscode.window.activeTextEditor;
+      if (editor) addEffectParameter(editor, 'instant');
+    })
+  );
+  context.subscriptions.push(
+    vscode.commands.registerCommand('darkest.addHasDesc', () => {
+      const editor = vscode.window.activeTextEditor;
+      if (editor) addEffectParameter(editor, 'hasDesc');
+    })
+  );
+  context.subscriptions.push(
+    vscode.commands.registerCommand('darkest.addQueue', () => {
+      const editor = vscode.window.activeTextEditor;
+      if (editor) addEffectParameter(editor, 'queue');
+    })
+  );
+  context.subscriptions.push(
+    vscode.commands.registerCommand('darkest.addApplyOnce', () => {
+      const editor = vscode.window.activeTextEditor;
+      if (editor) addEffectParameter(editor, 'applyOnce');
+    })
+  );
+  context.subscriptions.push(
+    vscode.commands.registerCommand('darkest.addApplyOnDeath', () => {
+      const editor = vscode.window.activeTextEditor;
+      if (editor) addEffectParameter(editor, 'applyOnDeath');
+    })
+  );
+  context.subscriptions.push(
+    vscode.commands.registerCommand('darkest.addAWR', () => {
+      const editor = vscode.window.activeTextEditor;
+      if (editor) addEffectParameter(editor, 'AWR');
     })
   );
 }
@@ -171,6 +384,11 @@ const validator = {
     return /^[+-]?\d+(\.\d+)?%?$/.test(value);
   },
   number_list: (value: string) => {
+    return value.split(/\s+/).every((item) => {
+      return validator.number(item);
+    });
+  },
+  range: (value: string) => {
     return value.split(/\s+/).every((item) => {
       return validator.number(item);
     });

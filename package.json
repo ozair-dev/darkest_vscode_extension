@@ -33,7 +33,423 @@
         "scopeName": "source.darkest",
         "path": "./syntaxes/darkest.tmLanguage.json"
       }
-    ]
+    ],
+    "commands": [
+      {
+        "command": "darkest.addStun",
+        "title": "Stun",
+        "category": "effectsBase"
+      },
+      {
+        "command": "darkest.addUnstun",
+        "title": "Clear Stun",
+        "category": "effectsBase"
+      },
+      {
+        "command": "darkest.addMark",
+        "title": "Mark",
+        "category": "effectsBase"
+      },
+      {
+        "command": "darkest.addUnmark",
+        "title": "Clear Mark",
+        "category": "effectsBase"
+      },
+      {
+        "command": "darkest.addBleed",
+        "title": "Bleed",
+        "category": "effectsBase"
+      },
+      {
+        "command": "darkest.addBlight",
+        "title": "Blight",
+        "category": "effectsBase"
+      },
+      {
+        "command": "darkest.addCureBleed",
+        "title": "Cure Bleed",
+        "category": "effectsBase"
+      },
+      {
+        "command": "darkest.addCureBlight",
+        "title": "Cure Blight",
+        "category": "effectsBase"
+      },
+      {
+        "command": "darkest.addCureDOTS",
+        "title": "Cure DOTs",
+        "category": "effectsBase"
+      },
+      {
+        "command": "darkest.addHeal",
+        "title": "Heal",
+        "category": "effectsBase"
+      },
+      {
+        "command": "darkest.addRegen",
+        "title": "Regen",
+        "category": "effectsBase"
+      },
+      {
+        "command": "darkest.addStress",
+        "title": "Stress",
+        "category": "effectsBase"
+      },
+      {
+        "command": "darkest.addDestress",
+        "title": "Stress Heal",
+        "category": "effectsBase"
+      },
+      {
+        "command": "darkest.addHorror",
+        "title": "Horror",
+        "category": "effectsBase"
+      },
+      {
+        "command": "darkest.addCureHorror",
+        "title": "Cure Horror",
+        "category": "effectsBase"
+      },
+      {
+        "command": "darkest.addGuard",
+        "title": "Guard",
+        "category": "effectsBase"
+      },
+      {
+        "command": "darkest.addClearGuard",
+        "title": "Clear Guard",
+        "category": "effectsBase"
+      },
+      {
+        "command": "darkest.addBuff1",
+        "title": "Buff/Debuff (buff file based)",
+        "category": "effectsBase"
+      },
+      {
+        "command": "darkest.addBuff2",
+        "title": "Buff/Debuff (effect based)",
+        "category": "effectsBase"
+      },
+      {
+        "command": "darkest.addCureDebuff",
+        "title": "Cure Debuffs",
+        "category": "effectsBase"
+      },
+      {
+        "command": "darkest.addADOT",
+        "title": "ADOT",
+        "category": "effectsBase"
+      },
+      {
+        "command": "darkest.addSetMode",
+        "title": "Set Mode",
+        "category": "effectsBase"
+      },
+      {
+        "command": "darkest.addRiposte",
+        "title": "Riposte",
+        "category": "effectsBase"
+      },
+      {
+        "command": "darkest.addClearRiposte",
+        "title": "Clear Riposte",
+        "category": "effectsBase"
+      },
+      {
+        "command": "darkest.addPush",
+        "title": "Push",
+        "category": "effectsBase"
+      },
+      {
+        "command": "darkest.addPull",
+        "title": "Pull",
+        "category": "effectsBase"
+      },
+      {
+        "command": "darkest.addShuffleTarget",
+        "title": "Shuffle Target",
+        "category": "effectsBase"
+      },
+      {
+        "command": "darkest.addShuffleParty",
+        "title": "Shuffle Party",
+        "category": "effectsBase"
+      },
+      {
+        "command": "darkest.addShuffleDOT",
+        "title": "Stumble/Shuffle DOT",
+        "category": "effectsBase"
+      },
+
+      {
+        "command": "darkest.addInstant",
+        "title": "Skill Instant",
+        "category": "effectsParams"
+      },
+      {
+        "command": "darkest.addHasDesc",
+        "title": "Has Description",
+        "category": "effectsParams"
+      },
+      {
+        "command": "darkest.addQueue",
+        "title": "Queue",
+        "category": "effectsParams"
+      },
+      {
+        "command": "darkest.addApplyOnce",
+        "title": "Apply Once",
+        "category": "effectsParams"
+      },
+      {
+        "command": "darkest.addApplyOnDeath",
+        "title": "Can Apply On Death",
+        "category": "effectsParams"
+      },
+      {
+        "command": "darkest.addAWR",
+        "title": "Apply With Result",
+        "category": "effectsParams"
+      }
+    ],
+    "submenus": [
+      {
+        "id": "darkest.baseEffects",
+        "label": "Add Base Effect"
+      },
+      {
+        "id": "darkest.effectParams",
+        "label": "Add Effect Parameters"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "submenu": "darkest.baseEffects",
+          "when": "editorTextFocus && editorLangId == darkest",
+          "group": "effectsGroup"
+        },
+        {
+          "submenu": "darkest.effectParams",
+          "when": "editorTextFocus && editorLangId == darkest",
+          "group": "effectsGroup"
+        }
+      ],
+      "darkest.baseEffects": [
+        {
+          "command": "darkest.addStun",
+          "submenu": "darkest.baseEffects",
+          "when": "editorTextFocus && editorLangId == darkest",
+          "group": "effectsGroup"
+        },
+        {
+          "command": "darkest.addUnstun",
+          "submenu": "darkest.baseEffects",
+          "when": "editorTextFocus && editorLangId == darkest",
+          "group": "effectsGroup"
+        },
+        {
+          "command": "darkest.addMark",
+          "submenu": "darkest.baseEffects",
+          "when": "editorTextFocus && editorLangId == darkest",
+          "group": "effectsGroup"
+        },
+        {
+          "command": "darkest.addUnmark",
+          "submenu": "darkest.baseEffects",
+          "when": "editorTextFocus && editorLangId == darkest",
+          "group": "effectsGroup"
+        },
+        {
+          "command": "darkest.addBleed",
+          "submenu": "darkest.baseEffects",
+          "when": "editorTextFocus && editorLangId == darkest",
+          "group": "effectsGroup"
+        },
+        {
+          "command": "darkest.addBlight",
+          "submenu": "darkest.baseEffects",
+          "when": "editorTextFocus && editorLangId == darkest",
+          "group": "effectsGroup"
+        },
+        {
+          "command": "darkest.addCureBleed",
+          "submenu": "darkest.baseEffects",
+          "when": "editorTextFocus && editorLangId == darkest",
+          "group": "effectsGroup"
+        },
+        {
+          "command": "darkest.addCureBlight",
+          "submenu": "darkest.baseEffects",
+          "when": "editorTextFocus && editorLangId == darkest",
+          "group": "effectsGroup"
+        },
+        {
+          "command": "darkest.addCureDOTS",
+          "submenu": "darkest.baseEffects",
+          "when": "editorTextFocus && editorLangId == darkest",
+          "group": "effectsGroup"
+        },
+        {
+          "command": "darkest.addHeal",
+          "submenu": "darkest.baseEffects",
+          "when": "editorTextFocus && editorLangId == darkest",
+          "group": "effectsGroup"
+        },
+        {
+          "command": "darkest.addRegen",
+          "submenu": "darkest.baseEffects",
+          "when": "editorTextFocus && editorLangId == darkest",
+          "group": "effectsGroup"
+        },
+        {
+          "command": "darkest.addStress",
+          "submenu": "darkest.baseEffects",
+          "when": "editorTextFocus && editorLangId == darkest",
+          "group": "effectsGroup"
+        },
+        {
+          "command": "darkest.addDestress",
+          "submenu": "darkest.baseEffects",
+          "when": "editorTextFocus && editorLangId == darkest",
+          "group": "effectsGroup"
+        },
+        {
+          "command": "darkest.addHorror",
+          "submenu": "darkest.baseEffects",
+          "when": "editorTextFocus && editorLangId == darkest",
+          "group": "effectsGroup"
+        },
+        {
+          "command": "darkest.addCureHorror",
+          "submenu": "darkest.baseEffects",
+          "when": "editorTextFocus && editorLangId == darkest",
+          "group": "effectsGroup"
+        },
+        {
+          "command": "darkest.addGuard",
+          "submenu": "darkest.baseEffects",
+          "when": "editorTextFocus && editorLangId == darkest",
+          "group": "effectsGroup"
+        },
+        {
+          "command": "darkest.addClearGuard",
+          "submenu": "darkest.baseEffects",
+          "when": "editorTextFocus && editorLangId == darkest",
+          "group": "effectsGroup"
+        },
+        {
+          "command": "darkest.addBuff1",
+          "submenu": "darkest.baseEffects",
+          "when": "editorTextFocus && editorLangId == darkest",
+          "group": "effectsGroup"
+        },
+        {
+          "command": "darkest.addBuff2",
+          "submenu": "darkest.baseEffects",
+          "when": "editorTextFocus && editorLangId == darkest",
+          "group": "effectsGroup"
+        },
+        {
+          "command": "darkest.addCureDebuff",
+          "submenu": "darkest.baseEffects",
+          "when": "editorTextFocus && editorLangId == darkest",
+          "group": "effectsGroup"
+        },
+        {
+          "command": "darkest.addADOT",
+          "submenu": "darkest.baseEffects",
+          "when": "editorTextFocus && editorLangId == darkest",
+          "group": "effectsGroup"
+        },
+        {
+          "command": "darkest.addSetMode",
+          "submenu": "darkest.baseEffects",
+          "when": "editorTextFocus && editorLangId == darkest",
+          "group": "effectsGroup"
+        },
+        {
+          "command": "darkest.addRiposte",
+          "submenu": "darkest.baseEffects",
+          "when": "editorTextFocus && editorLangId == darkest",
+          "group": "effectsGroup"
+        },
+        {
+          "command": "darkest.addClearRiposte",
+          "submenu": "darkest.baseEffects",
+          "when": "editorTextFocus && editorLangId == darkest",
+          "group": "effectsGroup"
+        },
+        {
+          "command": "darkest.addPush",
+          "submenu": "darkest.baseEffects",
+          "when": "editorTextFocus && editorLangId == darkest",
+          "group": "effectsGroup"
+        },
+        {
+          "command": "darkest.addPull",
+          "submenu": "darkest.baseEffects",
+          "when": "editorTextFocus && editorLangId == darkest",
+          "group": "effectsGroup"
+        },
+        {
+          "command": "darkest.addShuffleTarget",
+          "submenu": "darkest.baseEffects",
+          "when": "editorTextFocus && editorLangId == darkest",
+          "group": "effectsGroup"
+        },
+        {
+          "command": "darkest.addShuffleParty",
+          "submenu": "darkest.baseEffects",
+          "when": "editorTextFocus && editorLangId == darkest",
+          "group": "effectsGroup"
+        },
+        {
+          "command": "darkest.addShuffleDOT",
+          "submenu": "darkest.baseEffects",
+          "when": "editorTextFocus && editorLangId == darkest",
+          "group": "effectsGroup"
+        }
+      ],
+      "darkest.effectParams": [
+        {
+          "command": "darkest.addInstant",
+          "submenu": "darkest.effectParams",
+          "when": "editorTextFocus && editorLangId == darkest",
+          "group": "effectsGroup"
+        },
+        {
+          "command": "darkest.addHasDesc",
+          "submenu": "darkest.effectParams",
+          "when": "editorTextFocus && editorLangId == darkest",
+          "group": "effectsGroup"
+        },
+        {
+          "command": "darkest.addQueue",
+          "submenu": "darkest.effectParams",
+          "when": "editorTextFocus && editorLangId == darkest",
+          "group": "effectsGroup"
+        },
+        {
+          "command": "darkest.addApplyOnce",
+          "submenu": "darkest.effectParams",
+          "when": "editorTextFocus && editorLangId == darkest",
+          "group": "effectsGroup"
+        },
+        {
+          "command": "darkest.addApplyOnDeath",
+          "submenu": "darkest.effectParams",
+          "when": "editorTextFocus && editorLangId == darkest",
+          "group": "effectsGroup"
+        },
+        {
+          "command": "darkest.addAWR",
+          "submenu": "darkest.effectParams",
+          "when": "editorTextFocus && editorLangId == darkest",
+          "group": "effectsGroup"
+        }
+      ]
+    }
   },
   "scripts": {
     "vscode:prepublish": "yarn run compile",
