@@ -1,7 +1,9 @@
 import * as vscode from "vscode";
 import { GAME_MECHANICS_SCHEMA } from "./game-mechanics-schema";
 import { throttle } from "./utils/throttle";
-import { addEffect, addEffectParameter } from './effectCreation'; 
+import { validator } from './valueValidation';
+import { gatherModes } from './modeValidation';
+import { addEffect, addEffectParameter } from './effectCreation';
 
 export function activate(context: vscode.ExtensionContext) {
   const collection = vscode.languages.createDiagnosticCollection("darkest");
@@ -249,6 +251,16 @@ function updateDiagnostics(
 
   if (document.languageId === "darkest") {
     const diagnostics: vscode.Diagnostic[] = [];
+
+    const modes = gatherModes(document);
+    for(let mode of modes){
+      let paramKey = "."+mode+"_effects"
+      GAME_MECHANICS_SCHEMA.combat_skill[paramKey] = {
+        type: "string_list",
+        description: "Effects IDs for the "+mode+" mode",
+      };
+    }
+
     for (let i = 0; i < document.lineCount; i++) {
       const line = document.lineAt(i);
       const lineText = line.text.trim();
@@ -294,12 +306,12 @@ function updateDiagnostics(
       )!;
 
       const missingParams = Object.entries(GAME_MECHANICS_SCHEMA[keyword])
-        .filter(([, s]) => "required" in s && s.required)
-        .filter(([param]) =>
-          paramsAndValues.every(
-            (paramAndValue) => !paramAndValue.startsWith(param)
-          )
-        );
+      .filter(([, s]) => "required" in s && s.required)
+      .filter(([param]) =>
+        paramsAndValues.every(
+          (paramAndValue) => !paramAndValue.startsWith(param)
+        )
+      );
 
       if (missingParams.length > 0) {
         const missingParamsString = missingParams
@@ -329,31 +341,30 @@ function updateDiagnostics(
             vscode.DiagnosticSeverity.Error
           );
           diagnostics.push(diagnostic);
-        } else {
-          const expectedType = GAME_MECHANICS_SCHEMA[keyword][param].type;
-
-          const allowedValues =
-            GAME_MECHANICS_SCHEMA[keyword][param].allowed_values;
-          const value = values.join(" ").trim();
-          const isValid = validator[expectedType](value);
-          const isAllowed = isAllowedValue(value, allowedValues);
-          if (!isValid || !isAllowed) {
-            const diagnostic = new vscode.Diagnostic(
-              new vscode.Range(
-                line.lineNumber,
-                index,
-                line.lineNumber,
-                index + paramAndValue.length
-              ),
-              `Invalid value \`${value}\` for parameter \`${param}\` of type \`${expectedType}\`. ${
-                !isAllowed
-                  ? `Allowed values are: \`${allowedValues?.join(", ")}\``
-                  : ""
-              }`,
-              vscode.DiagnosticSeverity.Error
-            );
-            diagnostics.push(diagnostic);
-          }
+        }
+        else {
+            const expectedType = GAME_MECHANICS_SCHEMA[keyword][param].type;
+            const allowedValues = GAME_MECHANICS_SCHEMA[keyword][param].allowed_values;
+            const value = values.join(" ").trim();
+            const valueValidation = validator(value, expectedType);
+            const isAllowed = isAllowedValue(value, allowedValues);
+            if (!valueValidation.isValid || !isAllowed) {
+              const diagnostic = new vscode.Diagnostic(
+                new vscode.Range(
+                  line.lineNumber,
+                  index,
+                  line.lineNumber,
+                  index + paramAndValue.length
+                ),
+                `${valueValidation.message} ${
+                  !isAllowed
+                    ? `Allowed values: \`${allowedValues?.join(", ")}\``
+                    : ""
+                }`,
+                vscode.DiagnosticSeverity.Error
+              );
+              diagnostics.push(diagnostic);
+            }
         }
       });
     }
@@ -367,33 +378,6 @@ const throttledUpdateDiagnostics = throttle(
   },
   1000
 );
-
-const validator = {
-  string: (value: string) => {
-    return /^('[^']*'|"[^"]*"|[^\s]+)$/.test(value);
-  },
-  list: (value: string) => {
-    return value.split(/\s+/).every((item) => {
-      return validator.string(item);
-    });
-  },
-  boolean: (value: string) => {
-    return /^(true|false)$/.test(value);
-  },
-  number: (value: string) => {
-    return /^[+-]?\d+(\.\d+)?%?$/.test(value);
-  },
-  number_list: (value: string) => {
-    return value.split(/\s+/).every((item) => {
-      return validator.number(item);
-    });
-  },
-  range: (value: string) => {
-    return value.split(/\s+/).every((item) => {
-      return validator.number(item);
-    });
-  },
-};
 
 const isAllowedValue = (value: any, allowedValues?: any[]): boolean => {
   if (!allowedValues) {

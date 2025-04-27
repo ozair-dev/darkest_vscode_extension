@@ -11,7 +11,7 @@ const effects: {[key:string]:string} = {
     cureBlight: 'effect: .name "example_cure" .target "target" .chance 100% .cure_poison 1 .on_hit true .on_miss false',
     cureDOTS: 'effect: .name "example_cure" .target "target" .chance 100% .cure 1 .on_hit true .on_miss false',
     heal: 'effect: .name "example_heal_1" .target "target" .chance 100% .heal 4 .on_hit true .on_miss false',
-    regen: 'effect: .name "example_regen_1" .target "target" .chance 100% .dotHeal 2 .duration 3 .on_hit true .on_miss false',
+    regen: 'effect: .name "example_regen_1" .target "target" .chance 100% .dotHpHeal 2 .duration 3 .on_hit true .on_miss false',
     stress: 'effect: .name "example_stress_1" .target "target" .chance 100% .stress 10 .on_hit true .on_miss false',
     destress: 'effect: .name "example_destress_1" .target "target" .chance 100% .healstress 10 .on_hit true .on_miss false',
     horror: 'effect: .name "example_horror_1" .target "target" .chance 100% .dotStress 3 .duration 3 .on_hit true .on_miss false',

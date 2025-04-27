@@ -11,10 +11,21 @@
 			"presentation": {
 				"reveal": "never"
 			},
+			"group": "build",
+			"label": "npm: watch",
+			"detail": "tsc -watch -p ./"
+		},
+		{
+			"type": "typescript",
+			"tsconfig": "tsconfig.json",
+			"problemMatcher": [
+				"$tsc"
+			],
 			"group": {
 				"kind": "build",
 				"isDefault": true
-			}
+			},
+			"label": "tsc: build - tsconfig.json"
 		}
 	]
 }

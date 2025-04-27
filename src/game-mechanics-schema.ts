@@ -1,5 +1,5 @@
 type Schema = {
-  type: "string" | "number" | "boolean" | "list" | "number_list" | "range";
+  type: "string" | "number" | "boolean" | "string_list" | "number_list" | "range";
   description: string;
   allowed_values?: string[] | number[] | boolean[];
   required?: boolean;
@@ -110,7 +110,7 @@ export const GAME_MECHANICS_SCHEMA: {
       description: "Value added to the speed rating.",
     },
     ".buff_ids": {
-      type: "list",
+      type: "string_list",
       description: "List of buff IDs applied by the effect.",
     },
     ".duration": {
@@ -382,7 +382,7 @@ export const GAME_MECHANICS_SCHEMA: {
       description: "Indicates if the effect removes vampirism.",
     },
     ".summon_monsters": {
-      type: "list",
+      type: "string_list",
       description: "List of monster IDs summoned by the effect.",
     },
     ".summon_chances": {
@@ -491,7 +491,7 @@ export const GAME_MECHANICS_SCHEMA: {
       description: "Specifies the monster class ID set by the effect.",
     },
     ".set_monster_class_ids": {
-      type: "list",
+      type: "string_list",
       description: "List of monster class IDs set by the effect.",
     },
     ".set_monster_class_chances": {
@@ -696,16 +696,12 @@ export const GAME_MECHANICS_SCHEMA: {
       description: "Whether critical hits are valid",
     },
     ".effect": {
-      type: "list",
+      type: "string_list",
       description: "Effect IDs",
     },
     ".valid_modes": {
-      type: "list",
+      type: "string_list",
       description: "Valid mode IDs",
-    },
-    ".%s_effects": {
-      type: "list",
-      description: "Effects IDs for a specific mode",
     },
     ".ignore_stealth": {
       type: "boolean",
@@ -732,7 +728,7 @@ export const GAME_MECHANICS_SCHEMA: {
       description: "Required HP range for the performer",
     },
     ".rank_damage_modifiers": {
-      type: "list",
+      type: "string_list",
       description: "Damage modifiers for ranks",
       allowed_values: ["rank4", "rank3", "rank2", "rank1"],
     },
@@ -778,7 +774,7 @@ export const GAME_MECHANICS_SCHEMA: {
       description: "Whether the skill refreshes after each wave",
     },
     ".damage_heal_base_class_ids": {
-      type: "list",
+      type: "string_list",
       description: "Base class IDs for damage or healing",
     },
     ".ignore_deathsdoor": {
@@ -888,18 +884,6 @@ export const GAME_MECHANICS_SCHEMA: {
     ".can_display_performer_selection_after_turn": {
       type: "boolean",
       description: "Whether performer selection can be displayed after turn",
-    },
-    ".sw_smendA_effects": {
-      type: "list",
-      description: "Effects IDs for a specific mode",
-    },
-    ".sw_smendB_effects": {
-      type: "list",
-      description: "Effects IDs for a specific mode",
-    },
-    ".sw_sformA_effects": {
-      type: "list",
-      description: "Effects IDs for a specific mode",
     },
     ".ignore_riposte": {
       type: "boolean",
@@ -978,16 +962,12 @@ export const GAME_MECHANICS_SCHEMA: {
       description: "Whether critical hits are valid",
     },
     ".effect": {
-      type: "list",
+      type: "string_list",
       description: "Effect IDs",
     },
     ".valid_modes": {
-      type: "list",
+      type: "string_list",
       description: "Valid mode IDs",
-    },
-    ".%s_effects": {
-      type: "list",
-      description: "Effects IDs for a specific mode",
     },
     ".ignore_stealth": {
       type: "boolean",
@@ -1014,7 +994,7 @@ export const GAME_MECHANICS_SCHEMA: {
       description: "Required HP range for the performer",
     },
     ".rank_damage_modifiers": {
-      type: "list",
+      type: "string_list",
       description: "Damage modifiers for ranks",
       allowed_values: ["rank4", "rank3", "rank2", "rank1"],
     },
@@ -1060,7 +1040,7 @@ export const GAME_MECHANICS_SCHEMA: {
       description: "Whether the skill refreshes after each wave",
     },
     ".damage_heal_base_class_ids": {
-      type: "list",
+      type: "string_list",
       description: "Base class IDs for damage or healing",
     },
     ".ignore_deathsdoor": {
@@ -1171,18 +1151,6 @@ export const GAME_MECHANICS_SCHEMA: {
       type: "boolean",
       description: "Whether performer selection can be displayed after turn",
     },
-    ".sw_smendA_effects": {
-      type: "list",
-      description: "Effects IDs for a specific mode",
-    },
-    ".sw_smendB_effects": {
-      type: "list",
-      description: "Effects IDs for a specific mode",
-    },
-    ".sw_sformA_effects": {
-      type: "list",
-      description: "Effects IDs for a specific mode",
-    },
     ".ignore_riposte": {
       type: "boolean",
       description: "Whether the skill ignores riposte",
@@ -1232,7 +1200,7 @@ export const GAME_MECHANICS_SCHEMA: {
       description: "Indicates if the mode is the default for raids.",
     },
     ".always_guard_actor_base_class_ids": {
-      type: "list",
+      type: "string_list",
       description: "List of actor base class IDs that always guard.",
     },
     ".is_targetable": {
@@ -1378,7 +1346,7 @@ export const GAME_MECHANICS_SCHEMA: {
   },
   crit: {
     ".effects": {
-      type: "list",
+      type: "string_list",
       description: "Effect IDs",
     },
   },
@@ -1403,7 +1371,7 @@ export const GAME_MECHANICS_SCHEMA: {
   },
   overstressed_modifier: {
     ".override_trait_type_ids": {
-      type: "list",
+      type: "string_list",
       description: "The IDs of each custom Overstress states the hero will use.",
       required: true
     },
@@ -1415,14 +1383,14 @@ export const GAME_MECHANICS_SCHEMA: {
   },
   activity_modifier: {
     ".override_valid_activity_ids": {
-      type: "list",
+      type: "string_list",
       description: "The IDs of Hamlet facilities the hero cannot use.",
       required: true
     },
   },
   quirk_modifier: {
     ".incompatible_class_ids": {
-      type: "list",
+      type: "string_list",
       description: "The IDs of quirks the hero cannot acquire.",
       required: true
     },
@@ -1439,15 +1407,15 @@ export const GAME_MECHANICS_SCHEMA: {
   },
   deaths_door: {
     ".buffs": {
-      type: "list",
+      type: "string_list",
       description: "Death's Door IDs",
     },
     ".recovery_buffs": {
-      type: "list",
+      type: "string_list",
       description: "Death's Door Recovery buff IDs",
     },
     ".recovery_heart_attack_buffs": {
-      type: "list",
+      type: "string_list",
       description: "Heart attack buff IDs",
     },
   },
