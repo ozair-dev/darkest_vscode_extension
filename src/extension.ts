@@ -276,7 +276,7 @@ function updateDiagnostics(
         continue;
       }
 
-      const isLineValid = /^\w+:(\s+\.[a-zA-Z_]+(\s[^\s.][^\s]*)*)+$/.test(
+      const isLineValid = /^\w+:(\s+\.[a-zA-Z0-9_]+(\s[^\s.][^\s]*)*)+$/.test(
         lineText
       );
       if (!isLineValid) {
@@ -292,6 +292,7 @@ function updateDiagnostics(
       const keyword = line.text.match(/^\w+(?=:)/)?.[0]!;
 
       if (!GAME_MECHANICS_SCHEMA[keyword]) {
+        
         const diagnostic = new vscode.Diagnostic(
           line.range,
           `Unknown keyword: \`${keyword}\``,
@@ -302,7 +303,7 @@ function updateDiagnostics(
       }
 
       const paramsAndValues = lineText.match(
-        /(\.[a-zA-Z_]+)(\s[^\s.][^\s]*)*/g
+        /(\.[a-zA-Z0-9_]+)(\s[^\s.][^\s]*)*/g
       )!;
 
       const missingParams = Object.entries(GAME_MECHANICS_SCHEMA[keyword])
@@ -348,7 +349,8 @@ function updateDiagnostics(
             const value = values.join(" ").trim();
             const valueValidation = validator(value, expectedType);
             const isAllowed = isAllowedValue(value, allowedValues);
-            if (!valueValidation.isValid || !isAllowed) {
+            const canBeNull = checkCanBeNull(GAME_MECHANICS_SCHEMA[keyword][param].canBeNull)
+            if ((!valueValidation.isValid || !isAllowed) && canBeNull == false) {
               const diagnostic = new vscode.Diagnostic(
                 new vscode.Range(
                   line.lineNumber,
@@ -385,4 +387,10 @@ const isAllowedValue = (value: any, allowedValues?: any[]): boolean => {
   }
   const normalizedValue = value.replace(/['"]/g, "");
   return allowedValues.map((v) => v.toString()).includes(normalizedValue);
+};
+const checkCanBeNull = (value:any):boolean => {
+  if(value == true){
+    return true;
+  }
+  return false
 };

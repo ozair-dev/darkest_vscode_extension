@@ -3,6 +3,7 @@ type Schema = {
   description: string;
   allowed_values?: string[] | number[] | boolean[];
   required?: boolean;
+  canBeNull?: boolean;
 };
 
 export const GAME_MECHANICS_SCHEMA: {
@@ -41,12 +42,12 @@ export const GAME_MECHANICS_SCHEMA: {
     ".on_hit": {
       type: "boolean",
       description: "Indicates if the effect triggers on a hit.",
-      required: true,
+      //required: true,
     },
     ".on_miss": {
       type: "boolean",
       description: "Indicates if the effect triggers on a miss.",
-      required: true,
+      //required: true,
     },
     ".queue": {
       type: "boolean",
@@ -73,7 +74,7 @@ export const GAME_MECHANICS_SCHEMA: {
       description: "The amount of stress healed by the effect.",
     },
     ".combat_stat_buff": {
-      type: "number",
+      type: "boolean",
       allowed_values: [1, 0],
       description: "Indicates if the effect applies a combat stat buff.",
     },
@@ -134,32 +135,32 @@ export const GAME_MECHANICS_SCHEMA: {
       description: "Indicates if the heal can critically strike.",
     },
     ".cure": {
-      type: "number",
+      type: "boolean",
       allowed_values: [1, 0],
       description: "Indicates if the effect cures a condition.",
     },
     ".cure_bleed": {
-      type: "number",
+      type: "boolean",
       allowed_values: [1, 0],
       description: "Indicates if the effect cures bleeding.",
     },
     ".cure_poison": {
-      type: "number",
+      type: "boolean",
       allowed_values: [1, 0],
       description: "Indicates if the effect cures poison.",
     },
     ".clearDotStress": {
-      type: "number",
+      type: "boolean",
       allowed_values: [1, 0],
       description: "Indicates if the effect clears stress damage over time.",
     },
     ".tag": {
-      type: "number",
+      type: "boolean",
       allowed_values: [1, 0],
       description: "Indicates if the effect applies a tag.",
     },
     ".untag": {
-      type: "number",
+      type: "boolean",
       allowed_values: [1, 0],
       description: "Indicates if the effect removes a tag.",
     },
@@ -168,26 +169,26 @@ export const GAME_MECHANICS_SCHEMA: {
       description: "The stun value applied by the effect.",
     },
     ".unstun": {
-      type: "number",
+      type: "boolean",
       allowed_values: [1, 0],
       description: "Indicates if the effect removes a stun.",
     },
     ".keyStatus": {
       type: "string",
-      allowed_values: [
-        "tagged",
-        "poisoned",
-        "bleeding",
-        "stunned",
-        "dazed",
-        "virtued",
-        "afflicted",
-        "transformed",
-      ],
+      //allowed_values: [
+      //  "tagged",
+      //  "poisoned",
+      //  "bleeding",
+      //  "stunned",
+      //  "dazed",
+      //  "virtued",
+      //  "afflicted",
+      //  "transformed",
+      //],
       description: "The key status applied or checked by the effect.",
     },
     ".riposte": {
-      type: "number",
+      type: "boolean",
       allowed_values: [1, 0],
       description: "Indicates if the effect enables riposte.",
     },
@@ -212,22 +213,22 @@ export const GAME_MECHANICS_SCHEMA: {
       description: "The effect ID triggered by riposte.",
     },
     ".clear_riposte": {
-      type: "number",
+      type: "boolean",
       allowed_values: [1, 0],
       description: "Indicates if the effect clears riposte.",
     },
     ".guard": {
-      type: "number",
+      type: "boolean",
       allowed_values: [1, 0],
       description: "Indicates if the effect enables guarding.",
     },
     ".clearguarding": {
-      type: "number",
+      type: "boolean",
       allowed_values: [1, 0],
       description: "Indicates if the effect clears guarding.",
     },
     ".clearguarded": {
-      type: "number",
+      type: "boolean",
       allowed_values: [1, 0],
       description: "Indicates if the effect clears guarded status.",
     },
@@ -240,17 +241,17 @@ export const GAME_MECHANICS_SCHEMA: {
       description: "The amount by which the torch level increases.",
     },
     ".item": {
-      type: "number",
+      type: "boolean",
       allowed_values: [1, 0],
       description: "Indicates if the effect applies to an item.",
     },
     ".curio": {
-      type: "number",
+      type: "boolean",
       allowed_values: [1, 0],
       description: "Indicates if the effect applies to a curio.",
     },
     ".dotShuffle": {
-      type: "number",
+      type: "boolean",
       allowed_values: [1, 0],
       description: "Indicates if the effect shuffles the target.",
     },
@@ -263,7 +264,7 @@ export const GAME_MECHANICS_SCHEMA: {
       description: "The pull value applied by the effect.",
     },
     ".shuffletarget": {
-      type: "number",
+      type: "boolean",
       description: "Indicates if the target is shuffled.",
       allowed_values: [1, 0],
     },
@@ -272,7 +273,7 @@ export const GAME_MECHANICS_SCHEMA: {
       description: "Indicates if the party is shuffled.",
     },
     ".destealth": {
-      type: "number",
+      type: "boolean",
       description: "Indicates if the effect removes stealth.",
       allowed_values: [1, 0],
     },
@@ -329,17 +330,17 @@ export const GAME_MECHANICS_SCHEMA: {
       description: "Indicates if the source and target are swapped.",
     },
     ".kill": {
-      type: "number",
+      type: "boolean",
       allowed_values: [1, 0],
       description: "Indicates if the effect kills the target.",
     },
     ".immobilize": {
-      type: "number",
+      type: "boolean",
       allowed_values: [1, 0],
       description: "Indicates if the effect immobilizes the target.",
     },
     ".unimmobilize": {
-      type: "number",
+      type: "boolean",
       allowed_values: [1, 0],
       description: "Indicates if the effect removes immobilization.",
     },
@@ -348,7 +349,7 @@ export const GAME_MECHANICS_SCHEMA: {
       description: "The control value applied by the effect.",
     },
     ".uncontrol": {
-      type: "number",
+      type: "boolean",
       allowed_values: [1, 0],
       description: "Indicates if the effect removes control.",
     },
@@ -362,12 +363,12 @@ export const GAME_MECHANICS_SCHEMA: {
       description: "Specifies the monster type affected by the effect.",
     },
     ".capture": {
-      type: "number",
+      type: "boolean",
       allowed_values: [1, 0],
       description: "Indicates if the effect captures the target.",
     },
     ".capture_remove_from_party": {
-      type: "number",
+      type: "boolean",
       allowed_values: [1, 0],
       description:
         "Indicates if the captured target is removed from the party.",
@@ -377,7 +378,7 @@ export const GAME_MECHANICS_SCHEMA: {
       description: "Specifies the disease applied by the effect.",
     },
     ".remove_vampire": {
-      type: "number",
+      type: "boolean",
       allowed_values: [1, 0],
       description: "Indicates if the effect removes vampirism.",
     },
@@ -402,13 +403,12 @@ export const GAME_MECHANICS_SCHEMA: {
       description: "The count of monsters summoned.",
     },
     ".summon_erase_data_on_roll": {
-      type: "number",
+      type: "boolean",
       allowed_values: [1, 0],
       description: "Indicates if summon data is erased on roll.",
     },
     ".summon_can_spawn_loot": {
       type: "boolean",
-      allowed_values: [true, false],
       description: "Indicates if summoned monsters can spawn loot.",
     },
     ".summon_rank_is_previous_monster_class": {
@@ -417,7 +417,7 @@ export const GAME_MECHANICS_SCHEMA: {
         "Indicates if summon rank is based on the previous monster class.",
     },
     ".summon_does_roll_initiatives": {
-      type: "number",
+      type: "boolean",
       allowed_values: [1, 0],
       description: "Indicates if summoned monsters roll initiatives.",
     },
@@ -454,7 +454,7 @@ export const GAME_MECHANICS_SCHEMA: {
       description: "Specifies the rank target cleared by the effect.",
     },
     ".performer_rank_target": {
-      type: "number",
+      type: "boolean",
       allowed_values: [1, 0],
       description: "Indicates if the performer rank is targeted.",
     },
@@ -528,17 +528,17 @@ export const GAME_MECHANICS_SCHEMA: {
       description: "Indicates if the effect has a description.",
     },
     ".stealth": {
-      type: "number",
+      type: "boolean",
       allowed_values: [1, 0],
       description: "Indicates if the effect applies stealth.",
     },
     ".unstealth": {
-      type: "number",
+      type: "boolean",
       allowed_values: [1, 0],
       description: "Indicates if the effect removes stealth.",
     },
     ".clear_debuff": {
-      type: "number",
+      type: "boolean",
       allowed_values: [1, 0],
       description: "Indicates if the effect clears debuffs.",
     },
@@ -571,7 +571,7 @@ export const GAME_MECHANICS_SCHEMA: {
       description: "Specifies the base class ID of the target actor spawned.",
     },
     ".clearvirtue": {
-      type: "number",
+      type: "boolean",
       allowed_values: [1, 0],
       description: "Indicates if the effect clears virtue.",
     },
@@ -588,7 +588,7 @@ export const GAME_MECHANICS_SCHEMA: {
       description: "Indicates if the effect refreshes skill uses.",
     },
     ".cure_disease": {
-      type: "number",
+      type: "boolean",
       allowed_values: [1, 0],
       description: "Indicates if the effect cures a disease.",
     },
@@ -611,11 +611,10 @@ export const GAME_MECHANICS_SCHEMA: {
     },
     ".daze": {
       type: "number",
-      allowed_values: [1, 0],
       description: "Indicates if the effect applies daze.",
     },
     ".undaze": {
-      type: "number",
+      type: "boolean",
       allowed_values: [1, 0],
       description: "Indicates if the effect removes daze.",
     },
@@ -638,9 +637,8 @@ export const GAME_MECHANICS_SCHEMA: {
       description: "Attack value",
     },
     ".move": {
-      type: "string",
-      description: "Movement direction",
-      allowed_values: ["back", "forth"],
+      type: "range",
+      description: "Movement values",
     },
     ".crit": {
       type: "number",
@@ -653,7 +651,7 @@ export const GAME_MECHANICS_SCHEMA: {
     ".type": {
       type: "string",
       description: "Skill type",
-      allowed_values: ["melee", "ranged", "move", "teleport", ""],
+      //allowed_values: ["melee", "ranged", "move", "teleport", ""],
     },
     ".starting_cooldown": {
       type: "number",
@@ -678,6 +676,7 @@ export const GAME_MECHANICS_SCHEMA: {
     ".target": {
       type: "string",
       description: "Target ranks",
+      canBeNull: true,
     },
     ".self_target_valid": {
       type: "boolean",
@@ -728,9 +727,8 @@ export const GAME_MECHANICS_SCHEMA: {
       description: "Required HP range for the performer",
     },
     ".rank_damage_modifiers": {
-      type: "string_list",
+      type: "number_list",
       description: "Damage modifiers for ranks",
-      allowed_values: ["rank4", "rank3", "rank2", "rank1"],
     },
     ".heal": {
       type: "range",
@@ -904,9 +902,8 @@ export const GAME_MECHANICS_SCHEMA: {
       description: "Attack value",
     },
     ".move": {
-      type: "string",
-      description: "Movement direction",
-      allowed_values: ["back", "forth"],
+      type: "range",
+      description: "Movement values",
     },
     ".crit": {
       type: "number",
@@ -919,7 +916,7 @@ export const GAME_MECHANICS_SCHEMA: {
     ".type": {
       type: "string",
       description: "Skill type",
-      allowed_values: ["melee", "ranged", "move", "teleport", ""],
+      //allowed_values: ["melee", "ranged", "move", "teleport", ""],
     },
     ".starting_cooldown": {
       type: "number",
@@ -994,9 +991,8 @@ export const GAME_MECHANICS_SCHEMA: {
       description: "Required HP range for the performer",
     },
     ".rank_damage_modifiers": {
-      type: "string_list",
+      type: "number_list",
       description: "Damage modifiers for ranks",
-      allowed_values: ["rank4", "rank3", "rank2", "rank1"],
     },
     ".heal": {
       type: "string",
@@ -1156,6 +1152,136 @@ export const GAME_MECHANICS_SCHEMA: {
       description: "Whether the skill ignores riposte",
     },
   },
+  riposte_skill: {
+    ".id": {
+      type: "string",
+      description: "Skill name identifier",
+    },
+    ".dmg": {
+      type: "number",
+      description: "Damage range for monsters or value for heroes",
+    },
+    ".atk": {
+      type: "number",
+      description: "Attack value",
+    },
+    ".move": {
+      type: "range",
+      description: "Movement values",
+    },
+    ".crit": {
+      type: "number",
+      description: "Critical hit value",
+    },
+    ".level": {
+      type: "number",
+      description: "Skill level value",
+    },
+    ".type": {
+      type: "string",
+      description: "Skill type",
+    },
+    ".launch": {
+      type: "string",
+      description: "Launch ranks",
+    },
+    ".target": {
+      type: "string",
+      description: "Target ranks",
+    },
+    ".is_crit_valid": {
+      type: "boolean",
+      description: "Whether critical hits are valid",
+    },
+    ".effect": {
+      type: "string_list",
+      description: "Effect IDs",
+    },
+    ".valid_modes": {
+      type: "string_list",
+      description: "Valid mode IDs",
+    },
+    ".can_miss": {
+      type: "boolean",
+      description: "Whether the skill can miss",
+    },
+    ".ignore_protection": {
+      type: "boolean",
+      description: "Whether the skill ignores protection",
+    },
+    ".damage_heal_base_class_ids": {
+      type: "string_list",
+      description: "Base class IDs for damage or healing",
+    },
+    ".ignore_deathsdoor": {
+      type: "boolean",
+      description: "Whether the skill ignores death's door",
+    },
+    ".anim": {
+      type: "string",
+      description: "Animation name",
+    },
+    ".fx": {
+      type: "string",
+      description: "Effect name",
+    },
+    ".targfx": {
+      type: "string",
+      description: "Target effect name",
+    },
+    ".targheadfx": {
+      type: "string",
+      description: "Target head effect name",
+    },
+    ".targchestfx": {
+      type: "string",
+      description: "Target chest effect name",
+    },
+    ".misstargfx": {
+      type: "string",
+      description: "Missed target effect name",
+    },
+    ".misstargheadfx": {
+      type: "string",
+      description: "Missed target head effect name",
+    },
+    ".misstargchestfx": {
+      type: "string",
+      description: "Missed target chest effect name",
+    },
+    ".area_pos_offset": {
+      type: "range",
+      description: "Area position offset (X, Y)",
+    },
+    ".target_area_pos_offset": {
+      type: "range",
+      description: "Target area position offset (X, Y)",
+    },
+    ".reset_source_stance": {
+      type: "boolean",
+      description: "Whether the source stance is reset",
+    },
+    ".reset_target_stance": {
+      type: "boolean",
+      description: "Whether the target stance is reset",
+    },
+    ".custom_target_anim": {
+      type: "string",
+      description: "Custom target animation name",
+    },
+    ".custom_idle_anim_name": {
+      type: "string",
+      description: "Custom idle animation name",
+    },
+    ".custom_idle_round_duration": {
+      type: "number",
+      description: "Custom idle round duration",
+    },
+    ".has_crit_vo": {
+      type: "boolean",
+      description: "Whether critical voiceover is present",
+    },
+  },
   resistances: {
     ".stun": {
       type: "number",
@@ -1194,6 +1320,7 @@ export const GAME_MECHANICS_SCHEMA: {
     ".id": {
       type: "string",
       description: "The unique identifier for the mode.",
+      required: true
     },
     ".is_raid_default": {
       type: "boolean",
@@ -1396,6 +1523,16 @@ export const GAME_MECHANICS_SCHEMA: {
     },
   },
   extra_curio_loot: {
+    ".code": {
+      type: "string",
+      description: "The loot table's ID",
+    },
+    ".count": {
+      type: "number",
+      description: "The number of pulls from the loot table.",
+    },
+  },
+  extra_battle_loot: {
     ".code": {
       type: "string",
       description: "The loot table's ID",
