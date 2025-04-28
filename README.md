@@ -1,3 +1,7 @@
 # darkest_vscode_extension
 
-An extension for the Darkest Dungeon .darkest files.
+A VSCode extension for Darkest Dungeon's .darkest files/language.
+
+## Current Features:
+- Code Validation
+- Effect Generation
